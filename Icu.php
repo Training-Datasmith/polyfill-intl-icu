@@ -105,7 +105,7 @@ abstract class Icu
      *
      * @throws \InvalidArgumentException If the code is not one of the error constants in this class
      */
-    public static function setError(int $code, string $message = '')
+    public static function setError(int $code, string $message = ''): void
     {
         if (!isset(self::$errorCodes[$code])) {
             throw new \InvalidArgumentException(sprintf('No such error code: "%s".', $code));

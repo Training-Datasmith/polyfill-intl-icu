@@ -76,11 +76,9 @@ class FullTransformer
      */
     public function format(\DateTime $dateTime): string
     {
-        $formatted = preg_replace_callback($this->regExp, function ($matches) use ($dateTime) {
+        return preg_replace_callback($this->regExp, function ($matches) use ($dateTime): string {
             return $this->formatReplace($matches[0], $dateTime);
         }, $this->pattern);
-
-        return $formatted;
     }
 
     /**
@@ -163,7 +161,7 @@ class FullTransformer
         // when parsing a date/time value
         $escapedPattern = preg_replace('/\\\[\-|\/]/', '[\/\-]', $escapedPattern);
 
-        $reverseMatchingRegExp = preg_replace_callback($this->regExp, function ($matches) {
+        return preg_replace_callback($this->regExp, function ($matches): ?string {
             $length = \strlen($matches[0]);
             $transformerIndex = $matches[0][0];
 
@@ -181,8 +179,6 @@ class FullTransformer
 
             return null;
         }, $escapedPattern);
-
-        return $reverseMatchingRegExp;
     }
 
     /**
@@ -212,11 +208,9 @@ class FullTransformer
     {
         $specialCharsArray = str_split($specialChars);
 
-        $specialCharsMatch = implode('|', array_map(function ($char) {
+        return implode('|', array_map(function (string $char): string {
             return $char.'+';
         }, $specialCharsArray));
-
-        return $specialCharsMatch;
     }
 
     /**
