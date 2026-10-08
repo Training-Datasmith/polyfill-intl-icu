@@ -4,3 +4,4 @@
 /phpunit-*.phar
 /composer.sha256
 /phpunit.sha256
+.phpunit.result.cache

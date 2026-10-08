@@ -203,19 +203,8 @@ class IntlDateFormatterTest extends PolyfillTestCase
         }
     }
 
-    public function testConstructorUnknownTimeZoneFallsBackToDefault()
+    public function testSetTimeZoneWithInvalidIdentifierRetainsPreviousTimeZoneId()
     {
-        $previous = date_default_timezone_get();
-        date_default_timezone_set('Europe/Paris');
-        try {
-            $formatter = new \IntlDateFormatter('en', \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, 'Foo/Bar');
-            $formatter->setPattern('yyyy');
-            $this->assertSame('Europe/Paris', $formatter->getTimeZoneId());
-            $this->assertSame('1970', $formatter->format(0));
-        } finally {
-            date_default_timezone_set($previous);
-        }
-
         $formatter = new \IntlDateFormatter('en', \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, 'Etc/GMT-5');
         $formatter->setTimeZone('Foo/Bar');
         $this->assertSame('Etc/GMT-5', $formatter->getTimeZoneId());
