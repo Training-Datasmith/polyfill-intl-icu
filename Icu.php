@@ -61,8 +61,7 @@ abstract class Icu
      */
     public static function isFailure(int $errorCode): bool
     {
-        return isset(self::$errorCodes[$errorCode])
-            && $errorCode > self::U_ZERO_ERROR;
+        return $errorCode > self::U_ZERO_ERROR;
     }
 
     /**

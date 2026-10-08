@@ -26,6 +26,11 @@
             "/Tests/"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Symfony\\Polyfill\\Tests\\Intl\\Icu\\": "Tests/"
+        }
+    },
     "suggest": {
         "ext-intl": "For best performance and support of other locales than \"en\""
     },

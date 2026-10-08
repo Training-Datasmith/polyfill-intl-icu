@@ -1,0 +1,6 @@
+/vendor/
+/composer.phar
+/phpunit.phar
+/phpunit-*.phar
+/composer.sha256
+/phpunit.sha256

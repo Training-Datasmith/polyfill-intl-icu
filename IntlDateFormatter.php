@@ -574,7 +574,11 @@ abstract class IntlDateFormatter
                 $timezoneId = $this->getTimeZoneId();
             }
         } catch (\Exception $e) {
-            $timezoneId = $timezone = $this->getTimeZoneId();
+            if (!\is_string($this->timezoneId) || '' === $this->timezoneId) {
+                $timezoneId = $timezone = date_default_timezone_get();
+            } else {
+                $timezoneId = $timezone = $this->getTimeZoneId();
+            }
             $this->dateTimeZone = new \DateTimeZone($timezone);
         }
 
